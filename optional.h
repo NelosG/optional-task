@@ -199,7 +199,8 @@ public:
         }
     }
 
-    constexpr base_optional_copy &operator=(base_optional_copy const &other) noexcept(std::is_nothrow_copy_assignable_v<T>) {
+    constexpr base_optional_copy &operator=(base_optional_copy const &other)
+        noexcept(std::is_nothrow_copy_constructible_v<T> && std::is_nothrow_copy_assignable_v<T>) {
         if (this->has_value) {
             if (other.has_value) {
                 this->value = other.value;
